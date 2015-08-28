@@ -1,37 +1,52 @@
 'use strict';
 
+app.directive('stSelectAll', function () {
+    return {
+        restrict: 'E',
+        template: '<input type="checkbox" ng-model="isAllSelected" />',
+        scope: {
+            all: '='
+        },
+        link: function (scope, element, attr) {
 
-app.controller('PostController', ['$scope', function (scope, $scope) {
+            scope.$watch('isAllSelected', function () {
+                scope.all.forEach(function (val) {
+                    val.isSelected = scope.isAllSelected;
+                })
+            });
 
-    app.directive('stSelectAll', function () {
-        return {
-            restrict: 'E',
-            template: '<input type="checkbox" ng-model="isAllSelected" />',
-            scope: {
-                all: '='
-            },
-            link: function (scope, element, attr) {
+            scope.$watch('all', function (newVal, oldVal) {
+                if (oldVal) {
+                    oldVal.forEach(function (val) {
+                        val.isSelected = false;
+                    });
+                }
 
-                scope.$watch('isAllSelected', function () {
-                    scope.all.forEach(function (val) {
-                        val.isSelected = scope.isAllSelected;
-                    })
-                });
-
-                scope.$watch('all', function (newVal, oldVal) {
-                    if (oldVal) {
-                        oldVal.forEach(function (val) {
-                            val.isSelected = false;
-                        });
-                    }
-
-                    scope.isAllSelected = false;
-                });
-            }
+                scope.isAllSelected = false;
+            });
         }
-    });
+    }
+});
 
-    scope.rowCollection = [
+app.controller('PostController', ['$scope', function ($scope) {
+
+    $scope.firstRow = {};
+
+    $scope.setFields = function (fieldVal, fieldIndex) {
+        console.log('Called');
+        var val = $scope.firstRow[fieldVal];
+        $scope.changed = true;
+        angular.forEach($scope.rowCollection, function (row, i) {
+            row[fieldVal] = val;
+            $scope.rowCollection[fieldIndex + 1].matched = true;
+        });
+    };
+
+    $scope.fields = ['maxDraft', 'maxBeam', 'power', 'price'];
+
+
+
+    $scope.rowCollection = [
         {
             boatLength: '20-24 ft',
             maxDraft: 5,

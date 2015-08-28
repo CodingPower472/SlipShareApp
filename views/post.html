@@ -7,29 +7,13 @@
                     <th class="col-sm-1">
                         <input type="checkbox" ng-model="string" [name="string" ] [ng-true-value="expression" ] [ng-false-value="expression" ] [ng-change="string" ]>
                     </th>
-                    <th class="col-sm-1">
+                    <th>
+                    </th>
+                    <th ng-repeat="field in fields">
+                        <input type="number" ng-model="firstRow[field]" ng-change="setFields(field, $index)">
 
                     </th>
-                    <th class="col-sm-1">
-                        <div class="input-group input-group-sm">
-                            <input type="number" class="form-control input-sm">
-                        </div>
-                    </th>
-                    <th class="col-sm-1">
-                        <div class="input-group input-group-sm">
-                            <input type="number" class="form-control input-sm">
-                        </div>
-                    </th>
-                    <th class="col-sm-1">
-                        <div class="input-group input-group-sm">
-                            <input type="number" class="form-control input-sm">
-                        </div>
-                    </th>
-                    <th class="col-sm-1">
-                        <div class="input-group input-group-sm">
-                            <input type="number" class="form-control input-sm">
-                        </div>
-                    </th>
+
                 </tr>
                 <tr>
                     <th>Select</th>

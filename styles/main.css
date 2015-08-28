@@ -162,6 +162,7 @@ a:focus {
 
 .table td {
     text-align: center;
+    table-layout: auto;
     border: 1px solid black;
     overflow: hidden;
     width: auto;
