@@ -1,7 +1,7 @@
 'use strict';
 
 
-app.controller('PostController', ['$scope', function (scope) {
+app.controller('PostController', ['$scope', function (scope, $scope) {
 
     app.directive('stSelectAll', function () {
         return {
