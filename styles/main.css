@@ -154,13 +154,14 @@ a:focus {
     margin-right: 5px;
 }
 
-table {
+.table th {
     border: 1px solid black;
     table-layout: auto;
+    text-align: center;
 }
 
-th,
-td {
+.table td {
+    text-align: center;
     border: 1px solid black;
     overflow: hidden;
     width: auto;

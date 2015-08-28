@@ -4,21 +4,35 @@
 
             <thead>
                 <tr>
-                    <th></th>
-                    <th></th>
-                    <th>
-                        <input class="form-control input-sm" id="ex1" type="number">
+                    <th class="col-sm-1"></th>
+                    <th class="col-sm-1"></th>
+                    <th class="col-sm-1">
+                        <div class="input-group input-group-sm">
+                            <input type="number" class="form-control input-sm" id="search-church" placeholder=0>
+                        </div>
                     </th>
-                    <th>Max Beam (ft)</th>
-                    <th>Power (amp)</th>
-                    <th>Price ($)</th>
+                    <th class="col-sm-1">
+                        <div class="input-group input-group-sm">
+                            <input type="number" class="form-control input-sm" placeholder=0>
+                        </div>
+                    </th>
+                    <th class="col-sm-1">
+                        <div class="input-group input-group-sm">
+                            <input type="number" class="form-control input-sm" placeholder=0>
+                        </div>
+                    </th>
+                    <th class="col-sm-1">
+                        <div class="input-group input-group-sm">
+                            <input type="number" class="form-control input-sm" placeholder=0>
+                        </div>
+                    </th>
                 </tr>
                 <tr>
-                    <th></th>
+                    <th>Select</th>
                     <th>Boat Length (ft)</th>
                     <th>Max Draft (ft)</th>
                     <th>Max Beam (ft)</th>
-                    <th>Power (amp)</th>
+                    <th>Power (amps)</th>
                     <th>Price ($)</th>
                 </tr>
 
@@ -40,5 +54,6 @@
         </table>
         <br>
         <input type="submit" class="btn btn-success" value="Update Availability">
+        <input type="submit" class="btn btn-danger" value="Reset Grid">
     </form>
 </div>
