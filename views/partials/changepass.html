@@ -1,0 +1,22 @@
+<div class="modal" id="pasModal" ng-controller="AuthController">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Change Password</h4>
+            </div>
+            <div class="modal-body">
+                <form ng-submit="changePassword(user)">
+                    <input type="email" ng-model="user.email" placeholder="Email" class="form-control" required>
+                    <br>
+                    <input type="password" ng-model="user.oldPass" placeholder="Old Password" class="form-control" required>
+                    <br>
+                    <input type="password" ng-model="user.newPass" placeholder="New Password" class="form-control" required>
+                    <br>
+                    <input type="submit" value="Update" class="btn btn-success">
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

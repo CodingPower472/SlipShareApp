@@ -1,0 +1,25 @@
+<div class="container" ng-controller="PostController">
+    <form ng-submit="submit()">
+        <table st-table="rowCollection" class="table">
+            <thead>
+                <tr>
+                    <th>first name</th>
+                    <th>last name</th>
+                    <th>birth date</th>
+                    <th>balance</th>
+                    <th>email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="row in rowCollection" contenteditable="true">
+                    <td contenteditable="false">{{row.firstName}}</td>
+                    <td>{{row.lastName}}</td>
+                    <td>{{row.birthDate | date}}</td>
+                    <td>{{row.balance}}</td>
+                    <td>{{row.email}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <input type="submit" class="btn btn-primary">
+    </form>
+</div>
