@@ -3,6 +3,7 @@
         <table st-table="rowCollection" class="table">
             <thead>
                 <tr>
+                    <th></th>
                     <th>Boat Length</th>
                     <th>Max Draft</th>
                     <th>Max Beam</th>
@@ -12,6 +13,9 @@
             </thead>
             <tbody>
                 <tr ng-repeat="row in rowCollection" contenteditable="true">
+                    <td>
+                        <input type="checkbox" ng-model="string" [name="string" ] [ng-true-value="expression" ] [ng-false-value="expression" ] [ng-change="string" ]>
+                    </td>
                     <td contenteditable="false">{{row.boatLength}}</td>
                     <td>{{row.maxDraft}}</td>
                     <td>{{row.maxBeam}}</td>
@@ -20,6 +24,7 @@
                 </tr>
             </tbody>
         </table>
+        <br>
         <input type="submit" class="btn btn-primary">
     </form>
 </div>
