@@ -4,25 +4,60 @@
 app.controller('PostController', ['$scope', function (scope) {
     scope.rowCollection = [
         {
-            firstName: 'Laurent',
-            lastName: 'Renard',
-            birthDate: new Date('1987-05-21'),
-            balance: 102,
-            email: 'whatever@gmail.com'
+            boatLength: '20-24 ft',
+            maxDraft: 5,
+            maxBeam: 5,
+            power: 30,
+            price: 10
         },
         {
-            firstName: 'Blandine',
-            lastName: 'Faivre',
-            birthDate: new Date('1987-04-25'),
-            balance: -2323.22,
-            email: 'oufblandou@gmail.com'
+            boatLength: '25-29 ft',
+            maxDraft: 5,
+            maxBeam: 5,
+            power: 30,
+            price: 10
         },
         {
-            firstName: 'Francoise',
-            lastName: 'Frere',
-            birthDate: new Date('1955-08-27'),
-            balance: 42343,
-            email: 'raymondef@gmail.com'
+            boatLength: '30-34 ft',
+            maxDraft: 5,
+            maxBeam: 5,
+            power: 30,
+            price: 10
+        },
+        {
+            boatLength: '35-39 ft',
+            maxDraft: 5,
+            maxBeam: 5,
+            power: 30,
+            price: 10
+        },
+        {
+            boatLength: '40-44 ft',
+            maxDraft: 5,
+            maxBeam: 5,
+            power: 30,
+            price: 10
+        },
+        {
+            boatLength: '45-49 ft',
+            maxDraft: 5,
+            maxBeam: 5,
+            power: 30,
+            price: 10
+        },
+        {
+            boatLength: '50-54 ft',
+            maxDraft: 5,
+            maxBeam: 5,
+            power: 30,
+            price: 10
+        },
+        {
+            boatLength: '55-65 ft',
+            maxDraft: 5,
+            maxBeam: 5,
+            power: 30,
+            price: 10
         }
     ];
 
