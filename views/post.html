@@ -1,15 +1,29 @@
 <div class="container" ng-controller="PostController">
     <form ng-submit="submit()">
         <table st-table="rowCollection" class="table">
+
             <thead>
                 <tr>
                     <th></th>
-                    <th>Boat Length</th>
-                    <th>Max Draft</th>
-                    <th>Max Beam</th>
-                    <th>Power</th>
-                    <th>Price</th>
+                    <th></th>
+                    <th>
+                        <input class="form-control input-sm" id="ex1" type="number">
+                    </th>
+                    <th>Max Beam (ft)</th>
+                    <th>Power (amp)</th>
+                    <th>Price ($)</th>
                 </tr>
+                <tr>
+                    <th></th>
+                    <th>Boat Length (ft)</th>
+                    <th>Max Draft (ft)</th>
+                    <th>Max Beam (ft)</th>
+                    <th>Power (amp)</th>
+                    <th>Price ($)</th>
+                </tr>
+
+
+
             </thead>
             <tbody>
                 <tr ng-repeat="row in rowCollection" contenteditable="true">
@@ -25,6 +39,6 @@
             </tbody>
         </table>
         <br>
-        <input type="submit" class="btn btn-primary">
+        <input type="submit" class="btn btn-success" value="Update Availability">
     </form>
 </div>

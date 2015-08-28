@@ -153,3 +153,15 @@ a:focus {
     width: 35px;
     margin-right: 5px;
 }
+
+table {
+    border: 1px solid black;
+    table-layout: auto;
+}
+
+th,
+td {
+    border: 1px solid black;
+    overflow: hidden;
+    width: auto;
+}
