@@ -1,109 +1,97 @@
-'use strict';
+app.controller('PostController', ['$scope', 'slips', function ($scope, slips) {
 
-app.directive('stSelectAll', function () {
-    return {
-        restrict: 'E',
-        template: '<input type="checkbox" ng-model="isAllSelected" />',
-        scope: {
-            all: '='
-        },
-        link: function (scope, element, attr) {
+  $scope.inputRow = {};
 
-            scope.$watch('isAllSelected', function () {
-                scope.all.forEach(function (val) {
-                    val.isSelected = scope.isAllSelected;
-                })
-            });
-
-            scope.$watch('all', function (newVal, oldVal) {
-                if (oldVal) {
-                    oldVal.forEach(function (val) {
-                        val.isSelected = false;
-                    });
-                }
-
-                scope.isAllSelected = false;
-            });
-        }
+  $scope.slipcategories = [
+    {
+      boatlength: 22,
+      maxdraft: 14,
+      maxlength: 26
+    },
+    {
+      boatlength: 28,
+      maxdraft: 194,
+      maxlength: 132
     }
-});
+  ];
 
-app.controller('PostController', ['$scope', function ($scope) {
+  $scope.editedslipcategories = $.extend(true, {}, $scope.slipcategories);
 
-    $scope.firstRow = {};
+  $scope.fields = [
+    {
+      name: "Boat Length",
+      val: "boatlength",
+      changable: false,
+      unit: 'ft'
+    },
+    {
+      name: "Max Draft",
+      val: "maxdraft",
+      unit: 'ft'
+    },
+    {
+      name: "Max Length",
+      val: "maxlength",
+      unit: 'ft'
+    }
+  ];
 
-    $scope.setFields = function (fieldVal, fieldIndex) {
-        console.log('Called');
-        var val = $scope.firstRow[fieldVal];
-        $scope.changed = true;
-        angular.forEach($scope.rowCollection, function (row, i) {
-            row[fieldVal] = val;
-            $scope.rowCollection[fieldIndex + 1].matched = true;
-        });
-    };
+  $scope.reset = function () {
 
-    $scope.fields = ['maxDraft', 'maxBeam', 'power', 'price'];
+    $scope.editedslipcategories = $scope.slipcategories;
 
+  };
 
+  angular.forEach($scope.fields, function (field) {
 
-    $scope.rowCollection = [
-        {
-            boatLength: '20-24 ft',
-            maxDraft: 5,
-            maxBeam: 5,
-            power: 30,
-            price: 10
-        },
-        {
-            boatLength: '25-29 ft',
-            maxDraft: 5,
-            maxBeam: 5,
-            power: 30,
-            price: 10
-        },
-        {
-            boatLength: '30-34 ft',
-            maxDraft: 5,
-            maxBeam: 5,
-            power: 30,
-            price: 10
-        },
-        {
-            boatLength: '35-39 ft',
-            maxDraft: 5,
-            maxBeam: 5,
-            power: 30,
-            price: 10
-        },
-        {
-            boatLength: '40-44 ft',
-            maxDraft: 5,
-            maxBeam: 5,
-            power: 30,
-            price: 10
-        },
-        {
-            boatLength: '45-49 ft',
-            maxDraft: 5,
-            maxBeam: 5,
-            power: 30,
-            price: 10
-        },
-        {
-            boatLength: '50-54 ft',
-            maxDraft: 5,
-            maxBeam: 5,
-            power: 30,
-            price: 10
-        },
-        {
-            boatLength: '55-65 ft',
-            maxDraft: 5,
-            maxBeam: 5,
-            power: 30,
-            price: 10
-        }
-    ];
+    if (field.changable === undefined) {
 
+      field.changable = true;
+
+    }
+
+  });
+
+  $scope.submit = function () {
+
+    var len = 0;
+
+    angular.forEach($scope.editedslipcategories, function (slipcategory) {
+
+      if (slipcategory.checked) {
+
+        delete slipcategory.checked;
+
+        slips.$add(slipcategory);
+
+      }
+
+    });
+
+  };
+
+  $scope.setField = function (field) {
+
+    $scope.applied = true;
+
+    var fieldVal = field.val;
+    var inputRowVal = $scope.inputRow[fieldVal];
+
+    field.applied = true;
+
+    if (inputRowVal === null) {
+
+      field.applied = false;
+      $scope.applied = false;
+
+    }
+
+    angular.forEach($scope.editedslipcategories, function (slipcategory) {
+
+      slipcategory[fieldVal] = inputRowVal;
+
+    });
+
+  };
 
 }]);

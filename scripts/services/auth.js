@@ -1,9 +1,10 @@
 'use strict';
 
-app.factory('Auth', function (FURL, $firebaseAuth, $firebase) {
+app.factory('Auth', ['FURL', '$firebaseAuth', '$firebaseObject', function (FURL, $firebaseAuth, $firebaseObject) {
 
     var ref = new Firebase(FURL);
     var auth = $firebaseAuth(ref);
+    console.log(auth);
 
     var Auth = {
         user: {},
@@ -15,7 +16,7 @@ app.factory('Auth', function (FURL, $firebaseAuth, $firebase) {
                 gravatar: get_gravatar(user.email, 40)
             };
 
-            var profileRef = $firebase(ref.child('profile'));
+            var profileRef = $firebaseObject(ref.child('profile'));
             return profileRef.$set(uid, profile);
         },
 
@@ -61,7 +62,7 @@ app.factory('Auth', function (FURL, $firebaseAuth, $firebase) {
     auth.$onAuth(function (authData) {
         if (authData) {
             angular.copy(authData, Auth.user);
-            Auth.user.profile = $firebase(ref.child('profile').child(authData.uid)).$asObject();
+            Auth.user.profile = $firebaseObject(ref.child('profile').child(authData.uid));
         } else {
             if (Auth.user && Auth.user.profile) {
                 Auth.user.profile.$destroy();
@@ -301,4 +302,4 @@ app.factory('Auth', function (FURL, $firebaseAuth, $firebase) {
 
     return Auth;
 
-});
+}]);

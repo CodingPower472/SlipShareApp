@@ -1,44 +1,30 @@
-<div class="container" ng-controller="PostController">
-    <form ng-submit="submit()">
-        <table st-table="rowCollection" class="table">
+<form ng-submit="submit()" novalidate>
+  <table class="table">
+    <thead>
+      <th>Select</th>
+      <th ng-repeat="field in fields">{{ field.name }}</th>
+    </thead>
+    <tbody>
+      <button ng-click="reset()" ng-show="applied" class="btn btn-danger">Reset</button>
+      <tr>
+        <td>
+        </td>
+        <td ng-repeat="field in fields">
+          <input type="number" ng-model="inputRow[field.val]" ng-change="setField(field)" ng-show="field.changable">
+        </td>
+      </tr>
 
-            <thead>
-                <tr>
-                    <th class="col-sm-1">
-                        <input type="checkbox" ng-model="string" [name="string" ] [ng-true-value="expression" ] [ng-false-value="expression" ] [ng-change="string" ]>
-                    </th>
-                    <th>
-                    </th>
-                    <th class="-sm-1" ng-repeat="field in fields">
-                        <input class="form-control input-sm" type="number" ng-model="firstRow[field]" ng-change="setFields(field, $index)">
+      <tr ng-repeat="slipcategory in editedslipcategories">
+        <td>
+          <input type="checkbox" ng-model="editedslipcategories[$index].checked">
+        </td>
 
-                    </th>
-
-                </tr>
-                <tr>
-                    <th>Select</th>
-                    <th>Boat Length (ft)</th>
-                    <th>Max Draft (ft)</th>
-                    <th>Max Beam (ft)</th>
-                    <th>Power (amps)</th>
-                    <th>Price ($)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="row in rowCollection" contenteditable="true">
-                    <td>
-                        <input type="checkbox" ng-model="string" [name="string" ] [ng-true-value="expression" ] [ng-false-value="expression" ] [ng-change="string" ]>
-                    </td>
-                    <td contenteditable="false">{{row.boatLength}}</td>
-                    <td>{{row.maxDraft}}</td>
-                    <td>{{row.maxBeam}}</td>
-                    <td>{{row.power}}</td>
-                    <td>{{row.price}}</td>
-                </tr>
-            </tbody>
-        </table>
-        <br>
-        <input type="submit" class="btn btn-success" value="Update Availability">
-        <input type="submit" class="btn btn-danger" value="Reset Grid">
-    </form>
-</div>
+        <td ng-repeat="field in fields">
+          <input type="number" ng-hide="field.applied || !field.changable" ng-value="slipcategory[field.val]">
+          <p ng-show="field.applied || !field.changable">{{ slipcategory[field.val] }} {{ field.unit }}</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <input type="submit" class="btn btn-primary">
+</form>
